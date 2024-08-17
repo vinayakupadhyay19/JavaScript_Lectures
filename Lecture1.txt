@@ -1,0 +1,16 @@
+ Everything in javascript happens inside the execution context 
+ Execution Context is like a big box everything happend inside this box.
+
+                 Execution Context
+
+Memory Component                |               Code Component
+or Variable Environment                         or Thread Of Execution
+       
+      key:value                                 o     
+      a : 10                                    ---------------
+      fn : {....}                               o
+                                                ----------------
+
+
+Note :  JavaScript is a synchronous single-threaded language.
+
