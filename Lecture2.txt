@@ -1,0 +1,187 @@
+What  happens when you run the JavaScript code ?
+
+First an Execution Context is Created.
+
+Lets see with an example 
+
+var n = 2;
+function square(num){
+    var ans = num*num;
+    return ans;
+}
+
+var square2 = square(n);
+var square4 = square(4);
+
+
+1.                                        Execution Context (First Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : undefined
+
+     square : {stores
+      the whole code of the
+      funtion ...
+      ....
+      ...
+      }
+    
+     square2 : undefined
+
+     square4 : undefined
+
+    
+
+2.                                    Execution Context (Second Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : 2
+
+     square : {stores                                                   Memory              |          Code (First Phase)          
+      the whole code of the                                               
+      funtion ...                                                       num : undefined    
+      ....                                                              ans : undefined                      
+      ...
+      }
+    
+     square2 : undefined
+
+     square4 : undefined
+
+
+3.                                    Execution Context (Second Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : 2
+
+     square : {stores                                                   Memory              |          Code (First Phase)          
+      the whole code of the                                               
+      funtion ...                                                       num : 2                          num * num which is 4
+      ....                                                              ans : 4                          return ans
+      ...
+      }
+    
+     square2 : undefined
+
+     square4 : undefined
+
+
+
+4.                                    Execution Context (Second Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : 2
+
+     square : {stores                                                   Memory              |          Code (Second Phase)          
+      the whole code of the                                               
+      funtion ...                                                       num : 2                          num * num which is 4
+      ....                                                              ans : 4                          return ans
+      ...
+      }
+    
+     square2 : 4
+
+     square4 : undefined
+
+5.                                    Execution Context (Second Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : 2
+
+     square : {stores                                                   Memory              |          Code (Second Phase)          
+      the whole code of the                                               
+      funtion ...                                                       num : 2                          num * num which is 4
+      ....                                                              ans : 4                          return ans
+      ...
+      }
+    
+     square2 : 4
+
+     square4 : undefined                                               Memory               |          Code (First Phase)                                   
+
+                                                                       num : undefined
+                                                                       ans : undefined
+
+
+6.                                    Execution Context (Second Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : 2
+
+     square : {stores                                                   Memory              |          Code (Second Phase)          
+      the whole code of the                                               
+      funtion ...                                                       num : 2                          num * num which is 4
+      ....                                                              ans : 4                          return ans
+      ...
+      }
+    
+     square2 : 4
+
+     square4 : undefined                                               Memory               |          Code (Second Phase)                                   
+
+                                                                       num : 4                         num * num which is 16
+                                                                       ans : 16                        return ans
+
+
+7.                                    Execution Context (Second Phase)
+
+Memory Creation/Variable Environment              |                Code/Thread Of Execution
+
+     n : 2
+
+     square : {stores                                                   Memory              |          Code (Second Phase)          
+      the whole code of the                                               
+      funtion ...                                                       num : 2                          num * num which is 4
+      ....                                                              ans : 4                          return ans
+      ...
+      }
+    
+     square2 : 4
+
+     square4 : 16                                                      Memory               |          Code (Second Phase)                                   
+
+                                                                       num : 4                         num * num which is 16
+                                                                      ans : 16                         return ans
+
+
+Note :  Once both phase of execution completed it will autommatically deleted from execution context
+        like (***square2 function completed with result 4  so its nested execution context deleted)
+        (*In this notes, I keep it for better understanding)
+
+
+Note : Once JavaScript execution complted with whole program then whole global execution context will
+       be deleted. 
+
+
+***Lets summarize the First phase is known as the Memory Creation/Variable Environment and the 
+Second Phase is Code Execution or Thread Of Execution.
+
+***In memory creation phase we will allocate memory to variable and the function inside the global
+Execution Context.
+
+***In code execution phase we will assign the variable to its value and for function we will create
+a brand new Execution Context pahse and repeat that pahse again until its completion.
+
+
+***This all phases like creation, deletion and control this will all happen through callstack and 
+JavaScript manages it very smoothly.
+
+***In callstack at the bottom Global Execution Context is there.
+
+***Also if our callstack is empty this means we done with our program.
+
+***Call stack maintains the order of execution of execution contexts.
+
+***Call stack has more different names that you will see on internet are : 
+
+1. Execution Context Stack 
+2. Program Stack 
+3. Control Stack 
+4. Runtime Stack 
+5. Machine Stack
