@@ -1,0 +1,110 @@
+Scenario 1 :
+
+var x = 7;
+
+function getName(){
+     console.log('Namste Javascript');
+}
+
+getName();
+console.log(x);
+
+
+What do you expect the output will be ?
+
+Namste Javascript 
+7 
+
+Right ?  Yes it is.
+
+----------------------------------------------------------------------------------
+
+Scenario 2 : 
+
+getName();
+console.log(x);
+
+var x = 7;
+
+function getName(){
+     console.log('Namste Javascript');
+}
+
+Now can you tell what is the output ?
+
+In some other languages it should give error but here you will se the 
+beauty of JavaScript.
+
+The output will be: 
+
+Namste  Javascript
+undefined
+
+
+This is happening beacuase of Hoisting in JavaScript.
+
+Lets understand what is hoisting in JavaScript,
+
+As already discussed in previous lecture that JavaScript 
+allocate memory to all variable and function even before its execution. 
+
+You can understand it more easily by opening inspect in browser put a 
+debugger in the very first line of your code and when you refresh you 
+will see in Global there will be x as x: undefined and in case of function
+the whole function will be there as copy of function.
+
+-------------------------------------------------------------------------------------
+Scenario 3: 
+
+getName();
+console.log(x);
+
+
+function getName(){
+     console.log('Namste Javascript');
+}
+
+
+Here it will give Uncaught ReferenceError: x is not defined.
+
+It means x is not there in Global Scope of JavaScript.
+
+
+-------------------------------------------------------------------------------------
+
+Scenario 4: 
+
+getName();
+console.log(x);
+
+
+var getName = ()=>{
+     console.log('Namste Javascript');
+}
+
+Here it will give Uncaught TypeError: getName is not a function
+
+getName behave like a variable so in Global Scope it will there as 
+getName: undefined
+
+-------------------------------------------------------------------------------------
+
+Scenario 5: 
+
+getName();
+console.log(x);
+
+
+var getName2 = function () {
+    ......
+    ....
+    ...
+}
+
+var getName = ()=>{
+     console.log('Namste Javascript');
+}
+
+In this scenario getName and getName2 both behave like a variable.
+So the same error like Scenario 4.
+
