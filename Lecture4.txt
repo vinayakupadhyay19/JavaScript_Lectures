@@ -1,0 +1,27 @@
+var x = 1;
+
+a();
+b();
+
+console.log(x);
+
+function a(){
+    var x = 10;
+    console.log(x);
+}
+
+function b(){
+    var x = 100;
+    console.log(x);
+}
+
+The output of this program is : 
+10
+100
+1
+
+***You can easily create a Global Execution Context and check how the output of 
+the program is comming.
+
+***Put the debugger in browser see the real time Call Stack and exectution context
+of Global and Local Scope.
